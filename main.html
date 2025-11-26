@@ -1,29 +1,29 @@
-<!DOCTYPE html>
-<html>
-<body style="margin:0; overflow:hidden; background:#000; display:flex; justify-content:center; align-items:center; height:100vh;">
+<style>
+    body { margin: 0; overflow: hidden; background: #000; }
+    #game {
+        width: 800px; /* Original game width */
+        height: 600px; /* Original game height */
+        transform-origin: top left;
+        /* We will calculate the scale in JS */
+    }
+</style>
 
-    <!-- The Game -->
-    <iframe id="game" src="https://www.y8.com/embed/park_on_slot" style="border:none; width:800px; height:600px;"></iframe>
+<iframe id="game" src="https://www.y8.com/embed/park_on_slot" frameborder="0"></iframe>
 
-    <script>
-        // Force the game to scale down to fit the current window size
-        function resize() {
-            var game = document.getElementById('game');
-            var windowWidth = window.innerWidth;
-            var windowHeight = window.innerHeight;
-            
-            // Calculate scale needed to fit 800x600 into the current iframe window
-            var scaleX = windowWidth / 800;
-            var scaleY = windowHeight / 600;
-            var scale = Math.min(scaleX, scaleY); // Fit to whichever is smaller
-            
-            game.style.transform = "scale(" + scale + ")";
-            game.style.transformOrigin = "center center";
-        }
-
-        window.onresize = resize;
-        resize(); // Run once on load
-    </script>
-
-</body>
-</html>
+<script>
+    function resize() {
+        var game = document.getElementById('game');
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+        
+        // Calculate STRETCH factors
+        var scaleX = w / 800;
+        var scaleY = h / 600;
+        
+        // Apply non-uniform scaling (stretching)
+        game.style.transform = "scale(" + scaleX + ", " + scaleY + ")";
+    }
+    
+    window.onresize = resize;
+    resize();
+</script>
