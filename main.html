@@ -1,39 +1,29 @@
 <!DOCTYPE html>
 <html>
-<head>
-<style>
-    /* Style the button to fill the iframe */
-    button {
-        width: 100%;
-        height: 100vh; /* Fill the viewport */
-        background: #ff0055;
-        color: white;
-        font-size: 20px;
-        font-weight: bold;
-        border: none;
-        cursor: pointer;
-        text-align: center;
-    }
-    body { margin: 0; overflow: hidden; }
-</style>
-</head>
-<body>
+<body style="margin:0; overflow:hidden; background:#000; display:flex; justify-content:center; align-items:center; height:100vh;">
 
-<!-- This button fills the iframe. User MUST click it. -->
-<button onclick="openGame()">
-    CLICK TO PLAY<br>🚗 PARK ON SLOT 🚗
-</button>
+    <!-- The Game -->
+    <iframe id="game" src="https://www.y8.com/embed/park_on_slot" style="border:none; width:800px; height:600px;"></iframe>
 
-<script>
-function openGame() {
-    // Open a large popup window (800x600)
-    window.open(
-        "https://www.y8.com/embed/park_on_slot", 
-        "GameWindow", 
-        "width=800,height=600,resizable=yes,scrollbars=no,status=no"
-    );
-}
-</script>
+    <script>
+        // Force the game to scale down to fit the current window size
+        function resize() {
+            var game = document.getElementById('game');
+            var windowWidth = window.innerWidth;
+            var windowHeight = window.innerHeight;
+            
+            // Calculate scale needed to fit 800x600 into the current iframe window
+            var scaleX = windowWidth / 800;
+            var scaleY = windowHeight / 600;
+            var scale = Math.min(scaleX, scaleY); // Fit to whichever is smaller
+            
+            game.style.transform = "scale(" + scale + ")";
+            game.style.transformOrigin = "center center";
+        }
+
+        window.onresize = resize;
+        resize(); // Run once on load
+    </script>
 
 </body>
 </html>
