@@ -1,6 +1,29 @@
-    <script>
-        // Try to navigate the parent window to your game
-        if (top.location != self.location) {
-            top.location.href = "https://www.y8.com/embed/park_on_slot";
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Game</title>
+    <style>
+        /* Reset all margins and padding */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Hide scrollbars */
+            background-color: #000;
         }
-    </script>
+        /* Make the game iframe fill the container exactly */
+        iframe {
+            border: none;
+            width: 100vw;  /* 100% of viewport width */
+            height: 100vh; /* 100% of viewport height */
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- The game -->
+    <iframe src="https://www.y8.com/embed/park_on_slot"></iframe>
+</body>
+</html>
